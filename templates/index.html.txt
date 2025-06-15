@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Hesap Makinesi</title>
+</head>
+<body>
+    <h1>Hesap Makinesi</h1>
+    <form action="/hesapla" method="post">
+        <input type="text" name="sayi1" placeholder="1. Sayı" required>
+        <select name="islem">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="text" name="sayi2" placeholder="2. Sayı" required>
+        <button type="submit">Hesapla</button>
+    </form>
+
+    {% if sonuc is defined %}
+        <h2>Sonuç: {{ sonuc }}</h2>
+    {% endif %}
+</body>
+</html>
+
