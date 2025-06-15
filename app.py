@@ -8,12 +8,11 @@ def index():
 
 @app.route("/hesapla", methods=["POST"])
 def hesapla():
-    sayi1 = float(request.form["sayi1"])
-    sayi2 = float(request.form["sayi2"])
-    islem = request.form["islem"]
-
-    sonuc = 0
     try:
+        sayi1 = float(request.form["sayi1"])
+        sayi2 = float(request.form["sayi2"])
+        islem = request.form["islem"]
+
         if islem == "+":
             sonuc = sayi1 + sayi2
         elif islem == "-":
@@ -21,7 +20,12 @@ def hesapla():
         elif islem == "*":
             sonuc = sayi1 * sayi2
         elif islem == "/":
-            sonuc = sayi1 / sayi2
+            if sayi2 == 0:
+                sonuc = "Hata: Bir sayı sıfıra bölünemez."
+            else:
+                sonuc = sayi1 / sayi2
+        else:
+            sonuc = "Geçersiz işlem"
     except Exception as e:
         sonuc = f"Hata: {str(e)}"
 

@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Hesap Makinesi</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <h1>Hesap Makinesi</h1>
     <form action="/hesapla" method="post">
-        <input type="text" name="sayi1" placeholder="1. Sayı" required>
+        <input type="number" step="any" name="sayi1" placeholder="1. Sayı" required>
         <select name="islem">
             <option value="+">+</option>
             <option value="-">-</option>
             <option value="*">*</option>
             <option value="/">/</option>
         </select>
-        <input type="text" name="sayi2" placeholder="2. Sayı" required>
+        <input type="number" step="any" name="sayi2" placeholder="2. Sayı" required>
         <button type="submit">Hesapla</button>
     </form>
 
@@ -23,4 +24,29 @@
     {% endif %}
 </body>
 </html>
+<script>
+    // Basit bir hesap makinesi için JavaScript kodu
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const sayi1 = parseFloat(document.querySelector('input[name="sayi1"]').value);
+        const islem = document.querySelector('select[name="islem"]').value;
+        const sayi2 = parseFloat(document.querySelector('input[name="sayi2"]').value);
+        let sonuc;
 
+        switch (islem) {
+            case '+':
+                sonuc = sayi1 + sayi2;
+                break;
+            case '-':
+                sonuc = sayi1 - sayi2;
+                break;
+            case '*':
+                sonuc = sayi1 * sayi2;
+                break;
+            case '/':
+                sonuc = sayi1 / sayi2;
+                break;
+        }
+
+        document.querySelector('h2').textContent = 'Sonuç: ' + sonuc;
+    });
